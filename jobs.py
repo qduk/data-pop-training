@@ -2,7 +2,7 @@ import os
 import csv
 from io import StringIO
 from django.db import transaction
-from nautobot.apps.jobs import Job, register_jobs, RunJobTaskFailed
+from nautobot.apps.jobs import Job, register_jobs, RunJobTaskFailed, FileVar
 from nautobot.dcim.models import Location
 from nautobot.core.api.utils import get_serializer_for_model
 from nautobot.core.api.parsers import NautobotCSVParser
@@ -66,6 +66,14 @@ state_abbreviations = {
 
 class LocationImport(Job):
     """Imports locations from a CSV file."""
+
+    input_file = FileVar(label="Hardware CSV File", required=True)
+
+    class Meta:  # pylint: disable=too-few-public-methods
+        """Meta class."""
+
+        name = "Location Import"
+        description = "Locationj Import."
 
     def get_location_type_from_name(self, name):
         """Get the location type object from the name."""
