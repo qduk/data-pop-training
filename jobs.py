@@ -91,15 +91,16 @@ class LocationImport(Job):
         new_rows.append(["name", "location_type__name", "status", "parent__name"])
 
         for row in rows[1:]:
-            for entry in row.split(","):
-                new_rows.append([entry[2], "State", "Active", ""])
-                new_rows.append([entry[1], "City", "Active", entry[2]])
+            for entry in row:
+                entries = entry.split(",")
+                new_rows.append([entries[2], "State", "Active", ""])
+                new_rows.append([entries[1], "City", "Active", entries[2]])
                 new_rows.append(
                     [
-                        entry[0],
-                        self.get_location_type_from_name(entry[0]),
+                        entries[0],
+                        self.get_location_type_from_name(entries[0]),
                         "Active",
-                        entry[1],
+                        entries[1],
                     ]
                 )
 
