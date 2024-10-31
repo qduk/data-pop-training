@@ -93,6 +93,7 @@ class LocationImport(Job):
         for row in rows[1:]:
             for entry in row:
                 entries = entry.split(",")
+                print(entries)
                 new_rows.append([entries[2], "State", "Active", ""])
                 new_rows.append([entries[1], "City", "Active", entries[2]])
                 new_rows.append(
