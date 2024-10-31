@@ -88,7 +88,7 @@ class LocationImport(Job):
         """Edit the CSV data."""
         new_rows = []
         # Add header row
-        new_rows.append("name", "location_type__name", "status", "parent__name")
+        new_rows.append(["name", "location_type__name", "status", "parent__name"])
 
         for row in rows[1:]:
             for entry in row.split(","):
