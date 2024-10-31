@@ -91,16 +91,32 @@ class LocationImport(Job):
         new_rows.append(["name", "location_type__name", "status", "parent__name"])
 
         for row in rows[1:]:
-            new_rows.append([row[2], "State", "Active", "NoObject"])
-            new_rows.append([row[1], "City", "Active", row[2]])
+            new_rows.append(
+                [
+                    state_abbreviations.get(row[2])
+                    if row[2] in state_abbreviations
+                    else row[2],
+                    "State",
+                    "Active",
+                    "NoObject",
+                ]
+            )
+            new_rows.append(
+                [
+                    row[1],
+                    "City",
+                    "Active",
+                    state_abbreviations.get(row[2])
+                    if row[2] in state_abbreviations
+                    else row[2],
+                ]
+            )
             new_rows.append(
                 [
                     row[0],
                     self.get_location_type_from_name(row[0]),
                     "Active",
-                    state_abbreviations.get(row[1])
-                    if row[1] in state_abbreviations
-                    else row[1],
+                    row[1],
                 ]
             )
 
