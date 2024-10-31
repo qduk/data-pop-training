@@ -91,7 +91,7 @@ class LocationImport(Job):
         new_rows.append(["name", "location_type__name", "status", "parent__name"])
 
         for row in rows[1:]:
-            new_rows.append([row[2], "State", "Active", ""])
+            new_rows.append([row[2], "State", "Active", "NoObject"])
             new_rows.append([row[1], "City", "Active", row[2]])
             new_rows.append(
                 [
