@@ -195,8 +195,8 @@ class LocationImport(Job):
             else:
                 self.logger.warning("No %s objects were created", model)
 
-            if validation_failed:
-                raise RunJobTaskFailed("CSV import not fully successful, see logs")
+            # if validation_failed:
+            #     raise RunJobTaskFailed("CSV import not fully successful, see logs")
 
     def run(self, input_file):
         """Entrypoint for job."""
