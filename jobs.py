@@ -91,19 +91,18 @@ class LocationImport(Job):
         new_rows.append(["name", "location_type__name", "status", "parent__name"])
 
         for row in rows[1:]:
-            for entry in row:
-                entries = entry.split(",")
-                print(entries)
-                new_rows.append([entries[2], "State", "Active", ""])
-                new_rows.append([entries[1], "City", "Active", entries[2]])
-                new_rows.append(
-                    [
-                        entries[0],
-                        self.get_location_type_from_name(entries[0]),
-                        "Active",
-                        entries[1],
-                    ]
-                )
+            entries = row.split(",")
+            print(entries)
+            new_rows.append([entries[2], "State", "Active", ""])
+            new_rows.append([entries[1], "City", "Active", entries[2]])
+            new_rows.append(
+                [
+                    entries[0],
+                    self.get_location_type_from_name(entries[0]),
+                    "Active",
+                    entries[1],
+                ]
+            )
 
         with open(
             f"{os.path.join(os.path.dirname(__file__))}/normalized_locations.csv",
